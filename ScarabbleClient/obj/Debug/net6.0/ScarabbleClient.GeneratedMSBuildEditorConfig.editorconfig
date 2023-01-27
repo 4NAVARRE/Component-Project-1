@@ -7,5 +7,5 @@ build_property.InvariantGlobalization =
 build_property.PlatformNeutralAssembly = 
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
-build_property.RootNamespace = ScrabbleLibrary
-build_property.ProjectDir = D:\Semester 5\Projects\Component-Project-1-Cloned\ScrabbleLibrary\
+build_property.RootNamespace = ScarabbleClient
+build_property.ProjectDir = D:\Semester 5\Projects\Component-Project-1-Cloned\ScarabbleClient\
