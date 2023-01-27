@@ -10,10 +10,11 @@ namespace ScrabbleLibrary
 {
     internal class Rack : IRack
     {
-        private List<char> rackList = new();
-        Bag bag;
+        private List<char> rackList;
+        IBag bag;
         public Rack(Bag bag)
         {
+            rackList = new();
             this.bag = bag;
             Random r = new Random();
             List<char> list = new List<char>();
@@ -39,9 +40,6 @@ namespace ScrabbleLibrary
 
             }
         }
-
-
-
         private uint _totalPoints;
         public uint TotalPoints
         {
@@ -51,16 +49,23 @@ namespace ScrabbleLibrary
             }
             init
             {
-                _totalPoints = value;
+                _totalPoints = 0;
             }
         }
 
         public uint AddTiles()
         {
-            for (int i = 0; i < 7 - rackList.Count; i++)
-            {
-
+            //filling up the rack after some tiles have been removed by creating a word from the rack 
+            while(rackList.Count < 7) { 
+                if(bag.TileCount <= 0)                
+                    break;
+                
+                Bag convertedBag = (Bag)bag;
+                //GetARandomTile function was implemented in Bag class, so have to convert it from IBag type
+                //to BAg
+                rackList.Add(convertedBag.GetARandomTile());
             }
+            return (uint)rackList.Count;
         }
 
         public uint GetCharacterPoint(char character)
@@ -117,6 +122,7 @@ namespace ScrabbleLibrary
             {
                 score += GetCharacterPoint(character);
             }
+            _totalPoints += score;
             return score;
         }
     }

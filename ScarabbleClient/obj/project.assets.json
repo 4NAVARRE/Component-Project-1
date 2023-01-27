@@ -1,30 +1,11 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {
-      "ScarabbleClient/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/ScarabbleClient.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/ScarabbleClient.dll": {}
-        }
-      }
-    }
+    "net6.0": {}
   },
-  "libraries": {
-    "ScarabbleClient/1.0.0": {
-      "type": "project",
-      "path": "../ScarabbleClient/ScarabbleClient.csproj",
-      "msbuildProject": "../ScarabbleClient/ScarabbleClient.csproj"
-    }
-  },
+  "libraries": {},
   "projectFileDependencyGroups": {
-    "net6.0": [
-      "ScarabbleClient >= 1.0.0"
-    ]
+    "net6.0": []
   },
   "packageFolders": {
     "C:\\Users\\tnstn\\.nuget\\packages\\": {},
@@ -33,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Semester 5\\Projects\\Component-Project-1-Cloned\\ScrabbleLibrary\\ScrabbleLibrary.csproj",
-      "projectName": "ScrabbleLibrary",
-      "projectPath": "D:\\Semester 5\\Projects\\Component-Project-1-Cloned\\ScrabbleLibrary\\ScrabbleLibrary.csproj",
+      "projectUniqueName": "D:\\Semester 5\\Projects\\Component-Project-1-Cloned\\ScarabbleClient\\ScarabbleClient.csproj",
+      "projectName": "ScarabbleClient",
+      "projectPath": "D:\\Semester 5\\Projects\\Component-Project-1-Cloned\\ScarabbleClient\\ScarabbleClient.csproj",
       "packagesPath": "C:\\Users\\tnstn\\.nuget\\packages\\",
-      "outputPath": "D:\\Semester 5\\Projects\\Component-Project-1-Cloned\\ScrabbleLibrary\\obj\\",
+      "outputPath": "D:\\Semester 5\\Projects\\Component-Project-1-Cloned\\ScarabbleClient\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -57,11 +38,7 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {
-            "D:\\Semester 5\\Projects\\Component-Project-1-Cloned\\ScarabbleClient\\ScarabbleClient.csproj": {
-              "projectPath": "D:\\Semester 5\\Projects\\Component-Project-1-Cloned\\ScarabbleClient\\ScarabbleClient.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {

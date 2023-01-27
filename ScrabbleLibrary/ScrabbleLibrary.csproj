@@ -27,4 +27,8 @@
     </COMReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ScarabbleClient\ScarabbleClient.csproj" />
+  </ItemGroup>
+
 </Project>
