@@ -8,8 +8,8 @@ namespace ScrabbleLibrary
 {
     public interface IBag
     {
-        public string Author{ get; init; }
-        public uint TileCount{ get; init; }
+        public string Author{ get; }
+        public uint TileCount{ get; }
 
         public IRack GenerateRack();
         public string ToString();

@@ -57,6 +57,7 @@ while (true)
             Console.WriteLine($"The word [{choice}] is worth {players[0].TestWord(choice)} points.");
             Console.WriteLine($"Do you want to play the word [{players[0].ToString()}]? (y/n): ");
             choice= Console.ReadLine();
+            //"If  you see these changes say hi :)";
             if (choice == "y")
             {
                 break;
@@ -75,14 +76,3 @@ while (true)
 }
 
 
-
-//namespace INFO5060_Project1
-//{
-//    class Program
-//    {
-//        public static void Main(string[] args)
-//        {
-
-//        }
-//    }
-//}

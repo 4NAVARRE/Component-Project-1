@@ -16,3 +16,21 @@ C:\Users\mrsta\GitData\Component-Project-1\ScarabbleClient\obj\Debug\net6.0\ref\
 C:\Users\mrsta\GitData\Component-Project-1\ScarabbleClient\bin\Debug\net6.0\ScrabbleLibrary.dll
 C:\Users\mrsta\GitData\Component-Project-1\ScarabbleClient\bin\Debug\net6.0\ScrabbleLibrary.pdb
 C:\Users\mrsta\GitData\Component-Project-1\ScarabbleClient\obj\Debug\net6.0\ScarabbleClient.csproj.CopyComplete
+D:\Semester 5\Projects\Component-Project-1-Cloned\ScarabbleClient\bin\Debug\net6.0\ScarabbleClient.exe
+D:\Semester 5\Projects\Component-Project-1-Cloned\ScarabbleClient\bin\Debug\net6.0\ScarabbleClient.deps.json
+D:\Semester 5\Projects\Component-Project-1-Cloned\ScarabbleClient\bin\Debug\net6.0\ScarabbleClient.runtimeconfig.json
+D:\Semester 5\Projects\Component-Project-1-Cloned\ScarabbleClient\bin\Debug\net6.0\ScarabbleClient.dll
+D:\Semester 5\Projects\Component-Project-1-Cloned\ScarabbleClient\bin\Debug\net6.0\ScarabbleClient.pdb
+D:\Semester 5\Projects\Component-Project-1-Cloned\ScarabbleClient\bin\Debug\net6.0\ScrabbleLibrary.dll
+D:\Semester 5\Projects\Component-Project-1-Cloned\ScarabbleClient\bin\Debug\net6.0\ScrabbleLibrary.pdb
+D:\Semester 5\Projects\Component-Project-1-Cloned\ScarabbleClient\obj\Debug\net6.0\ScarabbleClient.csproj.AssemblyReference.cache
+D:\Semester 5\Projects\Component-Project-1-Cloned\ScarabbleClient\obj\Debug\net6.0\ScarabbleClient.GeneratedMSBuildEditorConfig.editorconfig
+D:\Semester 5\Projects\Component-Project-1-Cloned\ScarabbleClient\obj\Debug\net6.0\ScarabbleClient.AssemblyInfoInputs.cache
+D:\Semester 5\Projects\Component-Project-1-Cloned\ScarabbleClient\obj\Debug\net6.0\ScarabbleClient.AssemblyInfo.cs
+D:\Semester 5\Projects\Component-Project-1-Cloned\ScarabbleClient\obj\Debug\net6.0\ScarabbleClient.csproj.CoreCompileInputs.cache
+D:\Semester 5\Projects\Component-Project-1-Cloned\ScarabbleClient\obj\Debug\net6.0\ScarabbleClient.csproj.CopyComplete
+D:\Semester 5\Projects\Component-Project-1-Cloned\ScarabbleClient\obj\Debug\net6.0\ScarabbleClient.dll
+D:\Semester 5\Projects\Component-Project-1-Cloned\ScarabbleClient\obj\Debug\net6.0\refint\ScarabbleClient.dll
+D:\Semester 5\Projects\Component-Project-1-Cloned\ScarabbleClient\obj\Debug\net6.0\ScarabbleClient.pdb
+D:\Semester 5\Projects\Component-Project-1-Cloned\ScarabbleClient\obj\Debug\net6.0\ScarabbleClient.genruntimeconfig.cache
+D:\Semester 5\Projects\Component-Project-1-Cloned\ScarabbleClient\obj\Debug\net6.0\ref\ScarabbleClient.dll

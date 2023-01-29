@@ -16,27 +16,23 @@ namespace ScrabbleLibrary
         {
             rackList = new();
             this.bag = bag;
-            Random r = new Random();
             //List<char> list = new List<char>();
             for (int i = 0; i < 7; i++)
-            {
-                while (true)
-                {
+            {              
                     //0~25 represents each alphabet starting from 0 = A
-                    int rInt = r.Next(0, 25);
-                    KeyValuePair<char, int> pair = bag.letterMap.ElementAt(rInt);
-                    if (pair.Value > 0)
-                    {
-                        rackList.Add(pair.Key);
-                        //decrement  the tile count for randomly selected alphabet
-                        bag.letterMap[pair.Key]--;
+                    Bag tempBag = (Bag) bag;
+                    char newTile = tempBag.GetARandomTile();
+                    //GetARandomTile function will return '?' character if there are no tiles available in the bag
+                    if (newTile == '?')
                         break;
-                    }
-                    else
+
+                    if (bag.letterMap[newTile] >= 0)
                     {
-                        continue;
-                    }
-                }
+                        rackList.Add(newTile);
+                        //decrement  the tile count for randomly selected alphabet
+                        bag.letterMap[newTile]--;
+                        break;
+                    }               
 
             }
         }
@@ -111,38 +107,46 @@ namespace ScrabbleLibrary
         }
         public bool PlayWord(string candidate)
         {
-            return true;
-            //Note: Change thiss method since its suppose to be done in TestWord method
-            //Microsoft.Office.Interop.Word.Application wordObject = new();
-            //return wordObject.CheckSpelling(candidate);
+            uint score = TestWord(candidate);   //dbomqqq  d o o m
+            if (score > 0)
+            {
+                foreach (var cha in candidate)  
+                {
+                    if (rackList.Contains(cha))
+                    {
+                        rackList.Remove(cha);
+                    }
+                }
+                _totalPoints += score;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public uint TestWord(string candidate)
         {
+            //To handle the cases when a word contains duplicated character ("Coffee", "doom", etc)
+            //and there is only one character in the tileset
+            var tempHolder = rackList;
             uint score = 0;
 
-           //Microsoft.Office.Interop.Word.Application wordObject = new();
-           //if (!wordObject.CheckSpelling(candidate))
-           //{
-           //    return 0;
-           //
-           
-
-
-            string tmp = string.Join("",rackList);
-            for (int i = 0; i < candidate.Length; i++)
+            Microsoft.Office.Interop.Word.Application wordObject = new();
+            if (!wordObject.CheckSpelling(candidate))
             {
-                int sc = tmp.IndexOf(candidate[i]);
-                if (sc >= 0)
-                {
-                    tmp.Remove(sc);
-                }
-                else
-                {
-                    return 0;
-                }
+                return 0;
             }
-
+                         
+            foreach (char cha in candidate)
+            {
+                if (tempHolder.Contains(cha))   
+                tempHolder.Remove(cha);
+                else
+                    return 0;
+            }
+            
             foreach (char character in candidate)
             {
                 score += GetCharacterPoint(character);

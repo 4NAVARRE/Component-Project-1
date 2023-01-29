@@ -18,9 +18,11 @@ namespace ScrabbleLibrary
         //public enum letterEnum { a=0, b=1, c=2, d=3, e=4, f=5, g=6, h=7, i=8, j=9, k=10, l=11, m=12, n=13, o=14, p=15, q=16, r=17, s=18, t=19, u=20, v=21, w=22, x=23, y=24, z=25}
         internal Dictionary<char, int> letterMap;
 
-        string IBag.Author { get {
+        string IBag.Author {
+            get {
                 return "Author: Hongseok Kim & Stanislav Kovalenko - January 28, 2023";
-            } init { } }
+            } 
+        }
 
         //get iterates through letterMap to calculate the #of tiles
         uint IBag.TileCount
@@ -34,7 +36,6 @@ namespace ScrabbleLibrary
                 }
                 return count;
             }
-            init { }
         }
         public Bag()
         {
@@ -51,6 +52,19 @@ namespace ScrabbleLibrary
         //get a ran
         public char GetARandomTile()
         {
+            uint count = 0;
+            foreach (var tile in letterMap)
+            {
+                count += (uint)tile.Value;
+            }
+          
+            if (count == 0)
+            {
+                //GetARandomTile function will return '?' character to indicate
+                //that there are no tiles available to the caller
+                return '?';
+            }
+               
             Random r = new Random();
             List<KeyValuePair<char, int>> list = new List<KeyValuePair<char, int>>();
             //getting the list of tiles with count value >0
