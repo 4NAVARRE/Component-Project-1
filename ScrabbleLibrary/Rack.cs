@@ -12,30 +12,67 @@ namespace ScrabbleLibrary
     {
         private List<char> rackList;
         IBag bag;
-        public Rack(Bag bag)
+        //public Rack(Bag bag)
+        //{
+        //    rackList = new();
+        //    this.bag = bag;
+
+        //    //List<char> list = new List<char>();
+        //    for (int i = 0; i < 7; i++)
+        //    {              
+        //            //0~25 represents each alphabet starting from 0 = A
+
+        //            char newTile = bag.GetARandomTile();
+        //            //GetARandomTile function will return '?' character if there are no tiles available in the bag
+        //            if (newTile == '?')
+        //                break;
+
+        //            if (bag.letterMap[newTile] > 0)
+        //            {
+        //                rackList.Add(newTile);
+        //                //decrement  the tile count for randomly selected alphabet
+        //                bag.letterMap[newTile]--;                        
+        //            }               
+
+        //    }
+        //}
+
+
+
+        internal Rack(Bag bag)
         {
             rackList = new();
             this.bag = bag;
+            Random r = new Random();
+            List<char> list = new List<char>();
             //List<char> list = new List<char>();
             for (int i = 0; i < 7; i++)
-            {              
-                    //0~25 represents each alphabet starting from 0 = A
-                    Bag tempBag = (Bag) bag;
-                    char newTile = tempBag.GetARandomTile();
-                    //GetARandomTile function will return '?' character if there are no tiles available in the bag
-                    if (newTile == '?')
-                        break;
+            {
 
-                    if (bag.letterMap[newTile] >= 0)
+                while (true)
+                {
+                    //0~25 represents each alphabet starting from 0 = A
+                    int rInt = r.Next(0, 25);
+                    KeyValuePair<char, int> pair = bag.letterMap.ElementAt(rInt);
+                    if (pair.Value > 0)
                     {
-                        rackList.Add(newTile);
+                        list.Add(pair.Key);
+                        rackList.Add(pair.Key);
                         //decrement  the tile count for randomly selected alphabet
-                        bag.letterMap[newTile]--;
+                        bag.letterMap[pair.Key]--;
                         break;
-                    }               
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
 
             }
         }
+
+
+
         private uint _totalPoints;
         public uint TotalPoints
         {
