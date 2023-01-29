@@ -10,3 +10,18 @@ C:\Users\mrsta\source\repos\INFO5060 Project1\ScrabbleLibrary\obj\Debug\net6.0\S
 C:\Users\mrsta\source\repos\INFO5060 Project1\ScrabbleLibrary\obj\Debug\net6.0\refint\ScrabbleLibrary.dll
 C:\Users\mrsta\source\repos\INFO5060 Project1\ScrabbleLibrary\obj\Debug\net6.0\ScrabbleLibrary.pdb
 C:\Users\mrsta\source\repos\INFO5060 Project1\ScrabbleLibrary\obj\Debug\net6.0\ref\ScrabbleLibrary.dll
+C:\Users\mrsta\GitData\Component-Project-1\ScrabbleLibrary\bin\Debug\net6.0\ScrabbleLibrary.deps.json
+C:\Users\mrsta\GitData\Component-Project-1\ScrabbleLibrary\bin\Debug\net6.0\ScrabbleLibrary.dll
+C:\Users\mrsta\GitData\Component-Project-1\ScrabbleLibrary\bin\Debug\net6.0\ScrabbleLibrary.pdb
+C:\Users\mrsta\GitData\Component-Project-1\ScrabbleLibrary\obj\Debug\net6.0\ScrabbleLibrary.csproj.AssemblyReference.cache
+C:\Users\mrsta\GitData\Component-Project-1\ScrabbleLibrary\obj\Debug\net6.0\Interop.Microsoft.Office.Core.dll
+C:\Users\mrsta\GitData\Component-Project-1\ScrabbleLibrary\obj\Debug\net6.0\Interop.Microsoft.Office.Interop.Word.dll
+C:\Users\mrsta\GitData\Component-Project-1\ScrabbleLibrary\obj\Debug\net6.0\ScrabbleLibrary.csproj.ResolveComReference.cache
+C:\Users\mrsta\GitData\Component-Project-1\ScrabbleLibrary\obj\Debug\net6.0\ScrabbleLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mrsta\GitData\Component-Project-1\ScrabbleLibrary\obj\Debug\net6.0\ScrabbleLibrary.AssemblyInfoInputs.cache
+C:\Users\mrsta\GitData\Component-Project-1\ScrabbleLibrary\obj\Debug\net6.0\ScrabbleLibrary.AssemblyInfo.cs
+C:\Users\mrsta\GitData\Component-Project-1\ScrabbleLibrary\obj\Debug\net6.0\ScrabbleLibrary.csproj.CoreCompileInputs.cache
+C:\Users\mrsta\GitData\Component-Project-1\ScrabbleLibrary\obj\Debug\net6.0\ScrabbleLibrary.dll
+C:\Users\mrsta\GitData\Component-Project-1\ScrabbleLibrary\obj\Debug\net6.0\refint\ScrabbleLibrary.dll
+C:\Users\mrsta\GitData\Component-Project-1\ScrabbleLibrary\obj\Debug\net6.0\ScrabbleLibrary.pdb
+C:\Users\mrsta\GitData\Component-Project-1\ScrabbleLibrary\obj\Debug\net6.0\ref\ScrabbleLibrary.dll

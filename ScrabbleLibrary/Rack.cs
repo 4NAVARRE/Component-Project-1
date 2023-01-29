@@ -17,7 +17,7 @@ namespace ScrabbleLibrary
             rackList = new();
             this.bag = bag;
             Random r = new Random();
-            List<char> list = new List<char>();
+            //List<char> list = new List<char>();
             for (int i = 0; i < 7; i++)
             {
                 while (true)
@@ -27,7 +27,7 @@ namespace ScrabbleLibrary
                     KeyValuePair<char, int> pair = bag.letterMap.ElementAt(rInt);
                     if (pair.Value > 0)
                     {
-                        list.Add(pair.Key);
+                        rackList.Add(pair.Key);
                         //decrement  the tile count for randomly selected alphabet
                         bag.letterMap[pair.Key]--;
                         break;
@@ -111,19 +111,54 @@ namespace ScrabbleLibrary
         }
         public bool PlayWord(string candidate)
         {
-            Microsoft.Office.Interop.Word.Application wordObject = new();
-            return wordObject.CheckSpelling(candidate);
+            return true;
+            //Note: Change thiss method since its suppose to be done in TestWord method
+            //Microsoft.Office.Interop.Word.Application wordObject = new();
+            //return wordObject.CheckSpelling(candidate);
         }
 
         public uint TestWord(string candidate)
         {
             uint score = 0;
+
+           //Microsoft.Office.Interop.Word.Application wordObject = new();
+           //if (!wordObject.CheckSpelling(candidate))
+           //{
+           //    return 0;
+           //
+           
+
+
+            string tmp = string.Join("",rackList);
+            for (int i = 0; i < candidate.Length; i++)
+            {
+                int sc = tmp.IndexOf(candidate[i]);
+                if (sc >= 0)
+                {
+                    tmp.Remove(sc);
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+
             foreach (char character in candidate)
             {
                 score += GetCharacterPoint(character);
             }
             _totalPoints += score;
             return score;
+        }
+
+        public override string ToString()
+        {
+            string tmp = null;
+            foreach (char character in rackList)
+            {
+                tmp = tmp + character;
+            }
+            return tmp;
         }
     }
 }
