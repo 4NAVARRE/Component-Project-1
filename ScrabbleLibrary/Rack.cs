@@ -1,107 +1,68 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
-using static ScrabbleLibrary.Bag;
+﻿/***
+ * Author : Stanislav Kovalenko &  Hongseok Kim 
+ * Date : 28/01/2023
+ * File : Bag.cs
+ * Description : An internal class that implements IRack interface to represent a players assigned with rack slots
+ * filled with alphabet tiles.
+ */
+
+using Microsoft.Office.Interop.Word;
 
 namespace ScrabbleLibrary
 {
     internal class Rack : IRack
-    {
-        private List<char> rackList;
-        IBag bag;
-        //public Rack(Bag bag)
-        //{
-        //    rackList = new();
-        //    this.bag = bag;
+    {        
+        private uint _totalPoints; //total points obtained by  the player
+        private List<char> rackList; //rack slots which will hold up to 7 tiles
+        private IBag bag; //reference to the Bag object
 
-        //    //List<char> list = new List<char>();
-        //    for (int i = 0; i < 7; i++)
-        //    {              
-        //            //0~25 represents each alphabet starting from 0 = A
-
-        //            char newTile = bag.GetARandomTile();
-        //            //GetARandomTile function will return '?' character if there are no tiles available in the bag
-        //            if (newTile == '?')
-        //                break;
-
-        //            if (bag.letterMap[newTile] > 0)
-        //            {
-        //                rackList.Add(newTile);
-        //                //decrement  the tile count for randomly selected alphabet
-        //                bag.letterMap[newTile]--;                        
-        //            }               
-
-        //    }
-        //}
-
-
-
+        //Internal constructor which can only be called by GenerateRack() method defined in Bag class
         internal Rack(Bag bag)
         {
             rackList = new();
-            this.bag = bag;
-            Random r = new Random();
-            List<char> list = new List<char>();
-            //List<char> list = new List<char>();
-            for (int i = 0; i < 7; i++)
+            this.bag = bag;           
+            _totalPoints= 0;
+
+            //Assign the rackList with 7 tiles selected from the IBag object
+            while(rackList.Count <= 7) 
             {
-
-                while (true)
-                {
-                    //0~25 represents each alphabet starting from 0 = A
-                    int rInt = r.Next(0, 25);
-                    KeyValuePair<char, int> pair = bag.letterMap.ElementAt(rInt);
-                    if (pair.Value > 0)
-                    {
-                        list.Add(pair.Key);
-                        rackList.Add(pair.Key);
-                        //decrement  the tile count for randomly selected alphabet
-                        bag.letterMap[pair.Key]--;
-                        break;
-                    }
-                    else
-                    {
-                        continue;
-                    }
-                }
-
+                char newTile = bag.GetARandomTile();
+                if (newTile == '?')
+                    break;
+                rackList.Add(newTile);   
             }
         }
-
-
-
-        private uint _totalPoints;
-        public uint TotalPoints
+             
+        //A public implemented readonly property that returns the total points obtained 
+        //by the player
+        uint IRack.TotalPoints
         {
             get
             {
                 return _totalPoints;
-            }
-            init
-            {
-                _totalPoints = 0;
-            }
+            }           
         }
 
+        //Summary : A public function implemented from the IRack interface that 
+        //adds tiles to empty slots in rack(List<char>) from the Bag.
+        //Returns : The # of tiles in the rack after execution.
         public uint AddTiles()
         {
-            //filling up the rack after some tiles have been removed by creating a word from the rack 
+            //filling up the rack until the rackList is filled with 7 tiles or the # of total tiles in the bag
+            //reaches 0
             while(rackList.Count < 7) { 
                 if(bag.TileCount <= 0)                
                     break;
                 
                 Bag convertedBag = (Bag)bag;
-                //GetARandomTile function was implemented in Bag class, so have to convert it from IBag type
-                //to BAg
                 rackList.Add(convertedBag.GetARandomTile());
             }
             return (uint)rackList.Count;
         }
 
-        public uint GetCharacterPoint(char character)
+        //Summary : A private function that returns the score of char input
+        //Returns : The uint score value of char input
+        private uint GetCharacterPoint(char character)
         {
             switch (character)
             {
@@ -142,6 +103,10 @@ namespace ScrabbleLibrary
                     throw new NotImplementedException($"The alphabet {character} was not implemented.");
             }
         }
+
+        //Summary : A public function that test string input and removes
+        //the tiles from the rack if valid
+        //Returns : A bool value indicating the validity of the input 
         public bool PlayWord(string candidate)
         {
             uint score = TestWord(candidate);   //dbomqqq  d o o m
@@ -163,23 +128,26 @@ namespace ScrabbleLibrary
             }
         }
 
+        //Summary : A public function that test the potential score of string input
+        //Returns : A uint value that indicating the score 
         public uint TestWord(string candidate)
         {
             //To handle the cases when a word contains duplicated character ("Coffee", "doom", etc)
-            //and there is only one character in the tileset
+            //and there is only one character in the tileset, create a copy of current rack
             var tempHolder = rackList;
             uint score = 0;
 
-            Microsoft.Office.Interop.Word.Application wordObject = new();
+           Application wordObject = new();
             if (!wordObject.CheckSpelling(candidate))
             {
                 return 0;
             }
                          
+            //validating if the input word can be created from the rack
             foreach (char cha in candidate)
             {
                 if (tempHolder.Contains(cha))   
-                tempHolder.Remove(cha);
+                    tempHolder.Remove(cha);
                 else
                     return 0;
             }
@@ -192,12 +160,15 @@ namespace ScrabbleLibrary
             return score;
         }
 
+        //Summary : A public function that returns the list of tiles(char) in the rack(List<char>)
+        //as a concatenated string.
+        //Returns : A string
         public override string ToString()
         {
             string tmp = null;
             foreach (char character in rackList)
             {
-                tmp = tmp + character;
+                tmp += character;
             }
             return tmp;
         }

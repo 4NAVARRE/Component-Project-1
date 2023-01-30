@@ -1,45 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿/***
+ * Author : Stanislav Kovalenko &  Hongseok Kim 
+ * Date : 27/01/2023
+ * File : Bag.cs
+ * Description : A class that implements IBag interface to represent a bag
+ * filled with alphabet tiles.
+ */
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ScrabbleLibrary
 {
 
     public class Bag : IBag
     {
+        //a private uint variable which indicates the total number of tiles in the Bag.
+        //this value will be updated every time there are changes to the letterMap
+        //dictionary
+        private uint _tileCount;      
+               
+        //An internal <char, int> pair dictionary, whose char Key represents the type of tiles
+        //and int Value represents the # of tiles in the bag
+        internal Dictionary<char,uint> letterMap;
 
-
-        string tileName;
-        uint value;
-        uint amount;
-
-        //public enum letterEnum { a=0, b=1, c=2, d=3, e=4, f=5, g=6, h=7, i=8, j=9, k=10, l=11, m=12, n=13, o=14, p=15, q=16, r=17, s=18, t=19, u=20, v=21, w=22, x=23, y=24, z=25}
-        internal Dictionary<char, int> letterMap;
-
+        //Summary : Implemented read-only property that returns the Authors information
         string IBag.Author {
             get {
                 return "Author: Hongseok Kim & Stanislav Kovalenko - January 28, 2023";
             } 
         }
 
-        //get iterates through letterMap to calculate the #of tiles
+        //Summary : Implemented read-only property that returns the # of tiles in the  bag
         uint IBag.TileCount
         {
             get
             {
-                uint count = 0;
-                foreach (var tile in letterMap)
-                {
-                    count += (uint)tile.Value;
-                }
-                return count;
+               return _tileCount;
             }
         }
+
+        //Summary : A public constructor. This will initialize the letterMap dictionary 
+        //and private _tileCount property
         public Bag()
         {
-            letterMap = new Dictionary<char, int>() {
+            letterMap = new Dictionary<char, uint>() {
         { 'a', 9},{ 'b', 2},{ 'c', 2},{ 'd', 4},
         { 'e', 12},{ 'f', 2}, { 'g', 3}, { 'h', 2},
         { 'i', 9}, {'j', 1}, { 'k', 1}, { 'l', 4},
@@ -47,43 +49,55 @@ namespace ScrabbleLibrary
         {'q', 1}, { 'r', 6}, { 's', 4}, { 't', 6},
         {'u', 4}, { 'v', 2}, { 'w', 2}, { 'x', 1},
         {'y', 2}, { 'z', 1}};
-        }
 
-        //get a ran
-        public char GetARandomTile()
-        {
-            uint count = 0;
+            _tileCount = 0;
             foreach (var tile in letterMap)
             {
-                count += (uint)tile.Value;
+                _tileCount += (uint)tile.Value;
             }
-          
-            if (count == 0)
+        }
+
+        //Summary : A public function that gets a random tile which has more than 0 count
+        //from the letterMap dictionary
+        //Returns : A char value which indicates a tile
+        public char GetARandomTile()
+        {       
+            if (_tileCount == 0)
             {
                 //GetARandomTile function will return '?' character to indicate
                 //that there are no tiles available to the caller
                 return '?';
             }
                
+
             Random r = new Random();
-            List<KeyValuePair<char, int>> list = new List<KeyValuePair<char, int>>();
+            List<KeyValuePair<char, uint>> nonZeroTiles = new List<KeyValuePair<char, uint>>();
             //getting the list of tiles with count value >0
             foreach (var tile in letterMap)
                 if (tile.Value > 0)
-                    list.Add(tile);
+                    nonZeroTiles.Add(tile);
 
-            int rInt = r.Next(0, list.Count);
+            //get a random tiles from nonZeroTiles and decrement the count 
+            //for selected tile
+            int rInt = r.Next(0, nonZeroTiles.Count);
             char selectedTile = letterMap.ElementAt(rInt).Key;
-            //decrement the tile count for selected tile
+
             letterMap[selectedTile]--;
+            _tileCount--;
             return selectedTile;
         }
 
-            public IRack GenerateRack()
+        //Summary : A public function creates a new IRack type object (each IRack object represents a player)
+        //which references the Bag object
+        //Returns : A new IRack type object
+        public IRack GenerateRack()
         {
             return new Rack(this);
         }
 
+        //Summary : Get the current status of this Bag object as string that shows the count of each tiles
+        //in {tile.Key}({tile.Value}) format.
+        //Returns : A string
         public override string ToString() {
             StringBuilder bagStatus = new("");
             foreach(var tile in letterMap)
