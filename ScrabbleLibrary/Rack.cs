@@ -24,7 +24,7 @@ namespace ScrabbleLibrary
             _totalPoints= 0;
 
             //Assign the rackList with 7 tiles selected from the IBag object
-            while(rackList.Count <= 7) 
+            while(rackList.Count < 7) 
             {
                 char newTile = bag.GetARandomTile();
                 if (newTile == '?')

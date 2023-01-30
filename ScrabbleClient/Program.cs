@@ -1,93 +1,128 @@
 ﻿using ScrabbleLibrary;
 
-IBag storage = new Bag();
-Console.WriteLine($"Testing ScrabbleLibrary [{storage.Author}]");
-
-Console.WriteLine($"Bag initialized with the following {storage.TileCount} tiles..");
-Console.WriteLine(storage.ToString());
-
-Console.Write("Enter the numbers of player (1-8): ");
-
-int playersAmount = -1;
-while ((playersAmount < 0) || (playersAmount > 8))
+namespace INFO5060_Project1
 {
-    try
+    class Program
     {
-        playersAmount = Convert.ToInt32(Console.ReadLine());
-
-    }
-    catch
-    {
-        Console.WriteLine("Invaid input");
-    }
-}
-
-List<IRack> players = new List<IRack>();
-
-//string[] players = new string[playersAmount];
-
-for (int i = 0; i < playersAmount; i++)
-{
-    players.Add(storage.GenerateRack());
-}
-
-
-
-Console.WriteLine($"Racks for {playersAmount} were populated.\nBag now contains the following {storage.TileCount} tiles..");
-
-Console.WriteLine("-----------------------------------------------------------------------------\n" +
-"Player 1\n" +
-"---------------------------------------------------------------------------- - ");
-
-string choice;
-
-
-Console.WriteLine($"Yor rack contains [{players[0]}].");
-while (true)
-{
-    Console.Write("Test a word for its points value? (y/n): ");
-    choice = Console.ReadLine();
-
-    if (choice == "y")
-    {
-        Console.Write($"Enter a word using the letters [{players[0]}]: ");
-        choice = Console.ReadLine();
-        if (players[0].TestWord(choice) > 0)
+        public static void Main(string[] args)
         {
-            Console.WriteLine($"The word [{choice}] is worth {players[0].TestWord(choice)} points.");
-            Console.WriteLine($"Do you want to play the word [{choice}]? (y/n): ");
-            choice = Console.ReadLine();
-            if (choice == "y")
+            IBag storage = new Bag();
+            Console.WriteLine($"Testing ScrabbleLibrary [{storage.Author}]");
+
+            Console.WriteLine($"Bag initialized with the following {storage.TileCount} tiles..");
+            Console.WriteLine(storage.ToString());
+
+            Console.Write("Enter the numbers of player (1-8): ");
+
+            int playersAmount = -1;
+            while ((playersAmount < 0) || (playersAmount > 8))
             {
-                //play method goes here
-                break;
+                try
+                {
+                    playersAmount = Convert.ToInt32(Console.ReadLine());
+
+                }
+                catch
+                {
+                    Console.WriteLine("Invaid input");
+                }
             }
-        }
-        else
-        {
-            Console.WriteLine($"The word [{choice}] is worth 0 points.");
-        }
+
+            List<IRack> players = new List<IRack>();
+
+            //string[] players = new string[playersAmount];
+
+            for (int i = 0; i < playersAmount; i++)
+            {
+                players.Add(storage.GenerateRack());
+            }
+
+
+
+            Console.WriteLine($"Racks for {playersAmount} were populated.\nBag now contains the following {storage.TileCount} tiles..");
+
+            
+
+            
+            // 1 for game is going, 0 when changing player, -1 when game is over
+            while (true)
+            {
+                for (int i = 0; i < playersAmount; i++)
+                {
+                    players[i] = game(players[i]);
+                    if (players[i] == null)
+                    {
+                        return;
+                    }
+                }
+            }
+
+
     }
-    else
-    {
-        Console.Write($"Are you giving up? (y/n): ");
-        choice = Console.ReadLine();
-        if (choice == "y")
+
+        public static void buildHeader(int value)
         {
-            Console.WriteLine("Game is over.\nScore");
+            Console.WriteLine("-----------------------------------------------------------------------------\n" +
+            $"Player {value}\n" +
+            "---------------------------------------------------------------------------- - ");
+        }
+
+        public static IRack game(IRack player)
+        {
+            string choice;
+            buildHeader(1);
+            while (true)
+            {
+                Console.WriteLine($"Yor rack contains [{player}].");
+                Console.Write("Test a word for its points value? (y/n): ");
+                choice = Console.ReadLine();
+
+                switch (choice.ToLower())
+                {
+                    case "y":
+                        Console.Write($"Enter a word using the letters [{player}]: ");
+                        choice = Console.ReadLine();
+                        if (player.TestWord(choice) > 0)
+                        {
+                            Console.WriteLine($"The word [{choice}] is worth {player.TestWord(choice)} points.");
+                            Console.WriteLine($"Do you want to play the word [{choice}]? (y/n): ");
+                            choice = Console.ReadLine();
+                            if (choice == "y")
+                            {
+                                //play method goes here
+                                return player;
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine($"The word [{choice}] is worth 0 points.");
+                        }
+                        break;
+                    case "n":
+                        Console.Write($"Are you giving up? (y/n): ");
+                        choice = Console.ReadLine();
+                        if (choice == "y")
+                        {
+                            return null;
+                            Console.WriteLine("Game is over.\nScore");
+                        }
+                        else if (choice == "n")
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Wrong Input");
+                        }
+                        break;
+                    default:
+                        {
+                            Console.WriteLine("Wrong Input");
+                            break;
+                        }
+                }
+            }
+            return null;
         }
     }
 }
-
-
-
-//namespace INFO5060_Project1
-//{
-//    class Program
-//    {
-//        public static void Main(string[] args)
-//        {
-
-//        }
-//    }
-//}
