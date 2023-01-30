@@ -16,3 +16,21 @@ D:\Semester 5\Projects\Component-Project-1-Cloned\ScrabbleClient\obj\Debug\net6.
 D:\Semester 5\Projects\Component-Project-1-Cloned\ScrabbleClient\obj\Debug\net6.0\ScrabbleClient.pdb
 D:\Semester 5\Projects\Component-Project-1-Cloned\ScrabbleClient\obj\Debug\net6.0\ScrabbleClient.genruntimeconfig.cache
 D:\Semester 5\Projects\Component-Project-1-Cloned\ScrabbleClient\obj\Debug\net6.0\ref\ScrabbleClient.dll
+C:\Users\mrsta\GitData\Component-Project-1\ScrabbleClient\bin\Debug\net6.0\ScrabbleClient.exe
+C:\Users\mrsta\GitData\Component-Project-1\ScrabbleClient\bin\Debug\net6.0\ScrabbleClient.deps.json
+C:\Users\mrsta\GitData\Component-Project-1\ScrabbleClient\bin\Debug\net6.0\ScrabbleClient.runtimeconfig.json
+C:\Users\mrsta\GitData\Component-Project-1\ScrabbleClient\bin\Debug\net6.0\ScrabbleClient.dll
+C:\Users\mrsta\GitData\Component-Project-1\ScrabbleClient\bin\Debug\net6.0\ScrabbleClient.pdb
+C:\Users\mrsta\GitData\Component-Project-1\ScrabbleClient\bin\Debug\net6.0\ScrabbleLibrary.dll
+C:\Users\mrsta\GitData\Component-Project-1\ScrabbleClient\bin\Debug\net6.0\ScrabbleLibrary.pdb
+C:\Users\mrsta\GitData\Component-Project-1\ScrabbleClient\obj\Debug\net6.0\ScrabbleClient.csproj.AssemblyReference.cache
+C:\Users\mrsta\GitData\Component-Project-1\ScrabbleClient\obj\Debug\net6.0\ScrabbleClient.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mrsta\GitData\Component-Project-1\ScrabbleClient\obj\Debug\net6.0\ScrabbleClient.AssemblyInfoInputs.cache
+C:\Users\mrsta\GitData\Component-Project-1\ScrabbleClient\obj\Debug\net6.0\ScrabbleClient.AssemblyInfo.cs
+C:\Users\mrsta\GitData\Component-Project-1\ScrabbleClient\obj\Debug\net6.0\ScrabbleClient.csproj.CoreCompileInputs.cache
+C:\Users\mrsta\GitData\Component-Project-1\ScrabbleClient\obj\Debug\net6.0\ScrabbleClient.csproj.CopyComplete
+C:\Users\mrsta\GitData\Component-Project-1\ScrabbleClient\obj\Debug\net6.0\ScrabbleClient.dll
+C:\Users\mrsta\GitData\Component-Project-1\ScrabbleClient\obj\Debug\net6.0\refint\ScrabbleClient.dll
+C:\Users\mrsta\GitData\Component-Project-1\ScrabbleClient\obj\Debug\net6.0\ScrabbleClient.pdb
+C:\Users\mrsta\GitData\Component-Project-1\ScrabbleClient\obj\Debug\net6.0\ScrabbleClient.genruntimeconfig.cache
+C:\Users\mrsta\GitData\Component-Project-1\ScrabbleClient\obj\Debug\net6.0\ref\ScrabbleClient.dll

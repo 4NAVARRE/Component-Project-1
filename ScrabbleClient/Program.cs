@@ -50,27 +50,32 @@ while (true)
 
     if (choice == "y")
     {
-        Console.Write($"Enter a word using the letters [{players[0]}]:");
+        Console.Write($"Enter a word using the letters [{players[0]}]: ");
         choice = Console.ReadLine();
-        if (players[0].PlayWord(players[0].ToString()))
+        if (players[0].TestWord(choice) > 0)
         {
             Console.WriteLine($"The word [{choice}] is worth {players[0].TestWord(choice)} points.");
-            Console.WriteLine($"Do you want to play the word [{players[0].ToString()}]? (y/n): ");
+            Console.WriteLine($"Do you want to play the word [{choice}]? (y/n): ");
             choice = Console.ReadLine();
             if (choice == "y")
             {
+                //play method goes here
                 break;
             }
         }
         else
         {
-            Console.WriteLine($"The word [{players[0]}] is worth 0 points.");
+            Console.WriteLine($"The word [{choice}] is worth 0 points.");
         }
-
     }
     else
     {
-        break;
+        Console.Write($"Are you giving up? (y/n): ");
+        choice = Console.ReadLine();
+        if (choice == "y")
+        {
+            Console.WriteLine("Game is over.\nScore");
+        }
     }
 }
 
