@@ -37,18 +37,14 @@ namespace INFO5060_Project1
                 players.Add(storage.GenerateRack());
             }
 
-
-
-            Console.WriteLine($"Racks for {playersAmount} were populated.\nBag now contains the following {storage.TileCount} tiles..");
-
-            
-
-            
             // 1 for game is going, 0 when changing player, -1 when game is over
             while (true)
             {
+                Console.WriteLine($"Racks for {playersAmount} were populated.\nBag now contains the following {storage.TileCount} tiles..");
+                Console.WriteLine(storage.ToString());
                 for (int i = 0; i < playersAmount; i++)
                 {
+
                     players[i] = game(players[i]);
                     if (players[i] == null)
                     {
@@ -69,7 +65,7 @@ namespace INFO5060_Project1
 
         public static IRack game(IRack player)
         {
-            string choice;
+            string? choice;
             buildHeader(1);
             while (true)
             {
@@ -81,21 +77,30 @@ namespace INFO5060_Project1
                 {
                     case "y":
                         Console.Write($"Enter a word using the letters [{player}]: ");
-                        choice = Console.ReadLine();
-                        if (player.TestWord(choice) > 0)
+                        string? word = Console.ReadLine();
+                        //The function TestWord() takes long to execute, so minimize the # of execution
+                        uint score = player.TestWord(word);
+                        if (score > 0)
                         {
-                            Console.WriteLine($"The word [{choice}] is worth {player.TestWord(choice)} points.");
+                            Console.WriteLine($"The word [{word}] is worth {score} points.");
                             Console.WriteLine($"Do you want to play the word [{choice}]? (y/n): ");
                             choice = Console.ReadLine();
                             if (choice == "y")
                             {
                                 //play method goes here
+                                player.PlayWord(word);
+
+                                Console.WriteLine("\t\t------------------------------");
+                                Console.WriteLine(String.Format("\t\tWord Played:{0,10}", word));
+                                Console.WriteLine(String.Format("\t\tTotal Points:{0,8}", score));
+                                Console.WriteLine(String.Format("\t\tRack now contains:{0,10}", $"[{player}]"));
+                                Console.WriteLine("\t\t------------------------------\n");
                                 return player;
                             }
                         }
                         else
                         {
-                            Console.WriteLine($"The word [{choice}] is worth 0 points.");
+                            Console.WriteLine($"The word [{word}] is worth 0 points.");
                         }
                         break;
                     case "n":

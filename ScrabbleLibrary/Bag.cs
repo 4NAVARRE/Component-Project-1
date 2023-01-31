@@ -80,7 +80,7 @@ namespace ScrabbleLibrary
             //get a random tiles from nonZeroTiles and decrement the count 
             //for selected tile
             int rInt = r.Next(0, nonZeroTiles.Count);
-            char selectedTile = letterMap.ElementAt(rInt).Key;
+            char selectedTile =nonZeroTiles.ElementAt(rInt).Key;
 
             letterMap[selectedTile]--;
             _tileCount--;

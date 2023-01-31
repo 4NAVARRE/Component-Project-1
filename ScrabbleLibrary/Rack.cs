@@ -109,7 +109,13 @@ namespace ScrabbleLibrary
         //Returns : A bool value indicating the validity of the input 
         public bool PlayWord(string candidate)
         {
-            uint score = TestWord(candidate);   //dbomqqq  d o o m
+            uint score = 0;
+            //instead of calling TestWord to get the score,
+            //placed a for loop to calculate the score (TestWord takes too long for execution)
+            foreach (char character in candidate)
+            {
+                score += GetCharacterPoint(character);
+            }
             if (score > 0)
             {
                 foreach (var cha in candidate)  
@@ -120,6 +126,13 @@ namespace ScrabbleLibrary
                     }
                 }
                 _totalPoints += score;
+
+                //filling up the empty slots
+                Bag convertedBag = (Bag)bag;
+                while (rackList.Count < 7 && bag.TileCount > 0)
+                {
+                    rackList.Add(convertedBag.GetARandomTile());
+                }
                 return true;
             }
             else
@@ -134,7 +147,11 @@ namespace ScrabbleLibrary
         {
             //To handle the cases when a word contains duplicated character ("Coffee", "doom", etc)
             //and there is only one character in the tileset, create a copy of current rack
-            var tempHolder = rackList;
+            List<char> tempHolder = new();
+            foreach (var cha in rackList){
+                tempHolder.Add(cha);
+            }
+            
             uint score = 0;
 
            Application wordObject = new();
