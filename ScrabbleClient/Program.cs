@@ -47,7 +47,7 @@ namespace INFO5060_Project1
                 //this for loop ends with the round
                 for (playerTurn = 0; playerTurn < playersAmount; playerTurn++)
                 {                    
-                    continueGameFlag = game(players[playerTurn], playerTurn);
+                    continueGameFlag = Game(players[playerTurn], playerTurn);
 
                     if (!continueGameFlag)
                         break;                    
@@ -86,17 +86,17 @@ namespace INFO5060_Project1
 
 
 
-        public static void buildHeader(int value)
+        public static void BuildHeader(int value)
         {
             Console.WriteLine("-----------------------------------------------------------------------------\n" +
             $"                                Player {value}\n" +
             "----------------------------------------------------------------------------- ");
         }
 
-        public static bool game(IRack player, int playerNumber)
+        public static bool Game(IRack player, int playerNumber)
         {
             string? choice;
-            buildHeader(playerNumber+1);
+            BuildHeader(playerNumber+1);
             while (true)
             {
                 Console.WriteLine($"Yor rack contains [{player}].");
