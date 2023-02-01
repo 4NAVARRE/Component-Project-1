@@ -21,7 +21,6 @@ namespace INFO5060_Project1
                 try
                 {
                     playersAmount = Convert.ToInt32(Console.ReadLine());
-
                 }
                 catch
                 {
@@ -33,30 +32,27 @@ namespace INFO5060_Project1
 
             //string[] players = new string[playersAmount];
 
-            for (int i = 0; i < playersAmount; i++)
-            {
-                players.Add(storage.GenerateRack());
-            }
+            for (int i = 0; i < playersAmount; i++)            
+                players.Add(storage.GenerateRack());            
 
             // 1 for game is going, 0 when changing player, -1 when game is over
             bool continueGameFlag = true;
+            //while the game is going
             while (continueGameFlag)
             {
                 Console.WriteLine($"Racks for {playersAmount} were populated.\nBag now contains the following {storage.TileCount} tiles..");
                 Console.WriteLine(storage.ToString());
 
                 int playerTurn;
+                //this for loop ends with the round
                 for (playerTurn = 0; playerTurn < playersAmount; playerTurn++)
-                {
-                    
-                    bool gameContinued = game(players[playerTurn], playerTurn);
-                    if (!gameContinued)
-                    {
-                        continueGameFlag = false;
-                        break;
-                    }
+                {                    
+                    continueGameFlag = game(players[playerTurn], playerTurn);
+
+                    if (!continueGameFlag)
+                        break;                    
                 }
-                //if all players took their turns
+                //when round is over
                 if (playerTurn == playersAmount)
                 {
                     while (true)
