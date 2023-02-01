@@ -1,4 +1,5 @@
 ﻿using ScrabbleLibrary;
+using System.Numerics;
 
 namespace INFO5060_Project1
 {
@@ -38,35 +39,68 @@ namespace INFO5060_Project1
             }
 
             // 1 for game is going, 0 when changing player, -1 when game is over
-            while (true)
+            bool continueGameFlag = true;
+            while (continueGameFlag)
             {
                 Console.WriteLine($"Racks for {playersAmount} were populated.\nBag now contains the following {storage.TileCount} tiles..");
                 Console.WriteLine(storage.ToString());
-                for (int i = 0; i < playersAmount; i++)
-                {
 
-                    players[i] = game(players[i]);
-                    if (players[i] == null)
+                int playerTurn;
+                for (playerTurn = 0; playerTurn < playersAmount; playerTurn++)
+                {
+                    
+                    bool gameContinued = game(players[playerTurn], playerTurn);
+                    if (!gameContinued)
                     {
-                        return;
+                        continueGameFlag = false;
+                        break;
                     }
                 }
-            }
+                //if all players took their turns
+                if (playerTurn == playersAmount)
+                {
+                    while (true)
+                    {
+                        Console.Write("Would you like each player to take another turn? (y/n): ");
+                        string? choice = Console.ReadLine();
+                        if (choice == "y")
+                            break;
+                        else if (choice == "n")
+                        {
+                            continueGameFlag = false;
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Wrong Input");
+                            continue;
+                        }
+                    }
+                }
+            } 
+            Console.WriteLine("\nRetiring the game.\n\n"+
+               "The final scores are...\n\n"+
+               "-----------------------------------------------------------------------------");                 
+            for(int i =  0; i < players.Count; i++)               
+                Console.WriteLine($"Player {i+1}: {players[i].TotalPoints} points");
+            Console.WriteLine("-----------------------------------------------------------------------------\n");
+            return;
+         }
 
 
-    }
+
 
         public static void buildHeader(int value)
         {
             Console.WriteLine("-----------------------------------------------------------------------------\n" +
-            $"Player {value}\n" +
-            "---------------------------------------------------------------------------- - ");
+            $"                                Player {value}\n" +
+            "----------------------------------------------------------------------------- ");
         }
 
-        public static IRack game(IRack player)
+        public static bool game(IRack player, int playerNumber)
         {
             string? choice;
-            buildHeader(1);
+            buildHeader(playerNumber+1);
             while (true)
             {
                 Console.WriteLine($"Yor rack contains [{player}].");
@@ -83,7 +117,7 @@ namespace INFO5060_Project1
                         if (score > 0)
                         {
                             Console.WriteLine($"The word [{word}] is worth {score} points.");
-                            Console.WriteLine($"Do you want to play the word [{choice}]? (y/n): ");
+                            Console.WriteLine($"Do you want to play the word [{word}]? (y/n): ");
                             choice = Console.ReadLine();
                             if (choice == "y")
                             {
@@ -95,7 +129,7 @@ namespace INFO5060_Project1
                                 Console.WriteLine(String.Format("\t\tTotal Points:{0,8}", score));
                                 Console.WriteLine(String.Format("\t\tRack now contains:{0,10}", $"[{player}]"));
                                 Console.WriteLine("\t\t------------------------------\n");
-                                return player;
+                                return true;
                             }
                         }
                         else
@@ -106,28 +140,22 @@ namespace INFO5060_Project1
                     case "n":
                         Console.Write($"Are you giving up? (y/n): ");
                         choice = Console.ReadLine();
-                        if (choice == "y")
-                        {
-                            return null;
-                            Console.WriteLine("Game is over.\nScore");
-                        }
-                        else if (choice == "n")
-                        {
-                            continue;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Wrong Input");
-                        }
+
+                        if (choice == "y")                        
+                            return false;                  
+                        
+                        else if (choice == "n")                      
+                            continue;      
+                        
+                        else                       
+                            Console.WriteLine("Wrong Input");       
+                        
                         break;
-                    default:
-                        {
-                            Console.WriteLine("Wrong Input");
-                            break;
-                        }
+                    default:                        
+                        Console.WriteLine("Wrong Input");
+                        break;                       
                 }
             }
-            return null;
         }
     }
 }

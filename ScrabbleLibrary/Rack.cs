@@ -15,12 +15,13 @@ namespace ScrabbleLibrary
         private uint _totalPoints; //total points obtained by  the player
         private List<char> rackList; //rack slots which will hold up to 7 tiles
         private IBag bag; //reference to the Bag object
-
+        private Bag convertedBag;
         //Internal constructor which can only be called by GenerateRack() method defined in Bag class
         internal Rack(Bag bag)
         {
             rackList = new();
-            this.bag = bag;           
+            this.bag = bag;          
+            convertedBag = (Bag)bag;
             _totalPoints= 0;
 
             //Assign the rackList with 7 tiles selected from the IBag object
@@ -127,8 +128,7 @@ namespace ScrabbleLibrary
                 }
                 _totalPoints += score;
 
-                //filling up the empty slots
-                Bag convertedBag = (Bag)bag;
+                //filling up the empty slots                
                 while (rackList.Count < 7 && bag.TileCount > 0)
                 {
                     rackList.Add(convertedBag.GetARandomTile());
@@ -153,9 +153,8 @@ namespace ScrabbleLibrary
             }
             
             uint score = 0;
-
-           Application wordObject = new();
-            if (!wordObject.CheckSpelling(candidate))
+            
+            if (!convertedBag.wordObject.CheckSpelling(candidate))
             {
                 return 0;
             }
@@ -173,7 +172,6 @@ namespace ScrabbleLibrary
             {
                 score += GetCharacterPoint(character);
             }
-            _totalPoints += score;
             return score;
         }
 

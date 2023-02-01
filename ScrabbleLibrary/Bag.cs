@@ -5,6 +5,7 @@
  * Description : A class that implements IBag interface to represent a bag
  * filled with alphabet tiles.
  */
+using Microsoft.Office.Interop.Word;
 using System.Text;
 
 namespace ScrabbleLibrary
@@ -15,8 +16,9 @@ namespace ScrabbleLibrary
         //a private uint variable which indicates the total number of tiles in the Bag.
         //this value will be updated every time there are changes to the letterMap
         //dictionary
-        private uint _tileCount;      
-               
+        private uint _tileCount;
+
+        internal Application wordObject;
         //An internal <char, int> pair dictionary, whose char Key represents the type of tiles
         //and int Value represents the # of tiles in the bag
         internal Dictionary<char,uint> letterMap;
@@ -55,6 +57,8 @@ namespace ScrabbleLibrary
             {
                 _tileCount += (uint)tile.Value;
             }
+
+            wordObject = new Application();
         }
 
         //Summary : A public function that gets a random tile which has more than 0 count
