@@ -110,7 +110,7 @@ namespace ScrabbleLibrary
                 bagStatus.Append(status);
             }
             return bagStatus.ToString() + "\n";
-        }
+        }        
 
     }
 }
