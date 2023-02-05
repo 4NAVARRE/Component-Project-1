@@ -7,15 +7,20 @@ namespace INFO5060_Project1
     {
         public static void Main(string[] args)
         {
+            // Creating an instance of the Bag class
             IBag storage = new Bag();
             Console.WriteLine($"Testing ScrabbleLibrary [{storage.Author}]");
 
+            // Displaying the number of tiles in the bag
             Console.WriteLine($"Bag initialized with the following {storage.TileCount} tiles..");
             Console.WriteLine(storage.ToString());
 
+            // Prompting the user to enter the number of players
             Console.Write("Enter the numbers of player (1-8): ");
 
+            // Declaring a variable to store the number of players
             int playersAmount = -1;
+            // Loop to validate the input
             while ((playersAmount < 0) || (playersAmount > 8))
             {
                 try
@@ -28,15 +33,18 @@ namespace INFO5060_Project1
                 }
             }
 
+            // List to store instances of the IRack class
             List<IRack> players = new List<IRack>();
 
             //string[] players = new string[playersAmount];
-
+            // Loop to generate racks for the specified number of players
             for (int i = 0; i < playersAmount; i++)            
-                players.Add(storage.GenerateRack());            
+                players.Add(storage.GenerateRack());
 
+            // Boolean flag to continue the game
             // 1 for game is going, 0 when changing player, -1 when game is over
             bool continueGameFlag = true;
+
             //while the game is going
             while (continueGameFlag)
             {
@@ -95,14 +103,21 @@ namespace INFO5060_Project1
 
         public static bool Game(IRack player, int playerNumber)
         {
+            // String variable to store user's choice
             string? choice;
+            // Call the BuildHeader method with the player number incremented by 1 as an argument
             BuildHeader(playerNumber+1);
+            // Infinite loop to continue the game until the user decides to give up
             while (true)
             {
+                // Display the letters in the player's rack
+                // Ask the user if they want to test a word for its points value
+                // Read the user's response and store it in the `choice` variable
                 Console.WriteLine($"Yor rack contains [{player}].");
                 Console.Write("Test a word for its points value? (y/n): ");
                 choice = Console.ReadLine();
 
+                // Switch statement to handle the user's response
                 switch (choice.ToLower())
                 {
                     case "y":
@@ -117,19 +132,23 @@ namespace INFO5060_Project1
                             choice = Console.ReadLine();
                             if (choice == "y")
                             {
-                                //play method goes here
+                                // Call the PlayWord method on the `player` object to play the word
                                 player.PlayWord(word);
 
+                                // Display the word played, the score, and the updated rack
                                 Console.WriteLine("\t\t------------------------------");
                                 Console.WriteLine(String.Format("\t\tWord Played:{0,10}", word));
                                 Console.WriteLine(String.Format("\t\tTotal Points:{0,8}", score));
                                 Console.WriteLine(String.Format("\t\tRack now contains:{0,10}", $"[{player}]"));
                                 Console.WriteLine("\t\t------------------------------\n");
+
+                                // Return `true` to indicate that a word has been played
                                 return true;
                             }
                         }
-                        else
+                        else  // If the word has a score of 0
                         {
+                            // Inform the user that the word is worth 0 points
                             Console.WriteLine($"The word [{word}] is worth 0 points.");
                         }
                         break;
