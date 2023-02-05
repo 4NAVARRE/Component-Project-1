@@ -1,4 +1,11 @@
-﻿using ScrabbleLibrary;
+﻿/***
+ * Author : Stanislav Kovalenko &  Hongseok Kim 
+ * Date : 27/01/2023
+ * File : Program.cs
+ * Description : The client program to play the Scrabble game 
+ * with ScrabbleLibrary
+ */
+using ScrabbleLibrary;
 using System.Numerics;
 
 namespace INFO5060_Project1
@@ -88,11 +95,9 @@ namespace INFO5060_Project1
             for(int i =  0; i < players.Count; i++)               
                 Console.WriteLine($"Player {i+1}: {players[i].TotalPoints} points");
             Console.WriteLine("-----------------------------------------------------------------------------\n");
+
             return;
          }
-
-
-
 
         public static void BuildHeader(int value)
         {

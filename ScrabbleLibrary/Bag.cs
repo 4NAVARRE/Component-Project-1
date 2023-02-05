@@ -18,7 +18,7 @@ namespace ScrabbleLibrary
         //dictionary
         private uint _tileCount;
 
-        internal Application wordObject;
+        public Application wordObject;
         //An internal <char, int> pair dictionary, whose char Key represents the type of tiles
         //and int Value represents the # of tiles in the bag
         internal Dictionary<char,uint> letterMap;
@@ -111,6 +111,13 @@ namespace ScrabbleLibrary
             }
             return bagStatus.ToString() + "\n";
         }        
+
+        //The destructor method will call Quit() method
+        //on the Application object upon garbage collection
+        ~Bag()
+        {
+            wordObject.Quit();
+        }
 
     }
 }

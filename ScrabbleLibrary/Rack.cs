@@ -47,7 +47,7 @@ namespace ScrabbleLibrary
         //Summary : A public function implemented from the IRack interface that 
         //adds tiles to empty slots in rack(List<char>) from the Bag.
         //Returns : The # of tiles in the rack after execution.
-        public uint AddTiles()
+        uint IRack.AddTiles()
         {
             //filling up the rack until the rackList is filled with 7 tiles or the # of total tiles in the bag
             //reaches 0
@@ -108,7 +108,7 @@ namespace ScrabbleLibrary
         //Summary : A public function that test string input and removes
         //the tiles from the rack if valid
         //Returns : A bool value indicating the validity of the input 
-        public bool PlayWord(string candidate)
+        bool IRack.PlayWord(string candidate)
         {
             uint score = 0;
             //instead of calling TestWord to get the score,
@@ -143,7 +143,7 @@ namespace ScrabbleLibrary
 
         //Summary : A public function that test the potential score of string input
         //Returns : A uint value that indicating the score 
-        public uint TestWord(string candidate)
+        uint IRack.TestWord(string candidate)
         {
             //To handle the cases when a word contains duplicated character ("Coffee", "doom", etc)
             //and there is only one character in the tileset, create a copy of current rack
