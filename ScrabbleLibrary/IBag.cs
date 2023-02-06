@@ -7,7 +7,7 @@
 
 namespace ScrabbleLibrary
 {
-    public interface IBag
+    public interface IBag : IDisposable
     {
         //Summary : A public read-only property that returns the Authors information
         //Returns : A string value that stating the Author information

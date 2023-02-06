@@ -6,6 +6,7 @@
  * with ScrabbleLibrary
  */
 using ScrabbleLibrary;
+using System.ComponentModel;
 using System.Numerics;
 
 namespace INFO5060_Project1
@@ -48,20 +49,19 @@ namespace INFO5060_Project1
             for (int i = 0; i < playersAmount; i++)            
                 players.Add(storage.GenerateRack());
 
-            // Boolean flag to continue the game
-            // 1 for game is going, 0 when changing player, -1 when game is over
+            // Boolean flag to continue the game           
             bool continueGameFlag = true;
 
+            Console.WriteLine($"Racks for {playersAmount} were populated.");
             //while the game is going
             while (continueGameFlag)
-            {
-                Console.WriteLine($"Racks for {playersAmount} were populated.\nBag now contains the following {storage.TileCount} tiles..");
-                Console.WriteLine(storage.ToString());
-
+            {   
                 int playerTurn;
                 //this for loop ends with the round
                 for (playerTurn = 0; playerTurn < playersAmount; playerTurn++)
-                {                    
+                {
+                    Console.WriteLine($"Bag now contains the following {storage.TileCount} tiles..");
+                    Console.WriteLine(storage.ToString());
                     continueGameFlag = Game(players[playerTurn], playerTurn);
 
                     if (!continueGameFlag)
@@ -95,7 +95,7 @@ namespace INFO5060_Project1
             for(int i =  0; i < players.Count; i++)               
                 Console.WriteLine($"Player {i+1}: {players[i].TotalPoints} points");
             Console.WriteLine("-----------------------------------------------------------------------------\n");
-
+            storage.Dispose();
             return;
          }
 
@@ -127,8 +127,13 @@ namespace INFO5060_Project1
                 {
                     case "y":
                         Console.Write($"Enter a word using the letters [{player}]: ");
-                        string? word = Console.ReadLine();
-                        //The function TestWord() takes long to execute, so minimize the # of execution
+                        string? word;
+                        while (true) {
+                            word = Console.ReadLine();
+                            //The function TestWord() takes long to execute, so minimize the # of execution
+                            if ((word != null && word != string.Empty))
+                                break;
+                          }
                         uint score = player.TestWord(word);
                         if (score > 0)
                         {

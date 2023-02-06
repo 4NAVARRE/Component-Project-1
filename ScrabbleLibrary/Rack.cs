@@ -180,7 +180,7 @@ namespace ScrabbleLibrary
         //Returns : A string
         public override string ToString()
         {
-            string tmp = null;
+            string tmp = "";
             foreach (char character in rackList)
             {
                 tmp += character;

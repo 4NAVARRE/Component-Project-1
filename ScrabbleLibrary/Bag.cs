@@ -64,7 +64,7 @@ namespace ScrabbleLibrary
         //Summary : A public function that gets a random tile which has more than 0 count
         //from the letterMap dictionary
         //Returns : A char value which indicates a tile
-        public char GetARandomTile()
+        internal char GetARandomTile()
         {       
             if (_tileCount == 0)
             {
@@ -106,18 +106,20 @@ namespace ScrabbleLibrary
             StringBuilder bagStatus = new("");
             foreach(var tile in letterMap)
             {
-                string status = $"{tile.Key}({tile.Value})\t";
-                bagStatus.Append(status);
+                if (tile.Value > 0)
+                {
+                    string status = $"{tile.Key}({tile.Value})\t";
+                    bagStatus.Append(status);
+                }                
             }
             return bagStatus.ToString() + "\n";
-        }        
+        }
 
-        //The destructor method will call Quit() method
+        //The implemented Dispose method will call Quit() method
         //on the Application object upon garbage collection
-        ~Bag()
+        public void Dispose()
         {
             wordObject.Quit();
         }
-
     }
 }
